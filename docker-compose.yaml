@@ -1,0 +1,14 @@
+version: "3.0.0"
+services:
+  db_service:
+    container_name: db-service
+    image: mongo
+    restart: always
+    network_mode: host
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: root
+       MONGO_INITDB_ROOT_PASSWORD: 12345678
+    
+volumes:
+  db:
+   driver: "local"

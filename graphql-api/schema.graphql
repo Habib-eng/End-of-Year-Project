@@ -1,0 +1,53 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Address {
+    street: String!
+    city: String!
+    zip_code: String!
+}
+
+type Contact {
+    type: String!
+    value: String!
+}
+
+type User {
+    id : String!
+    name: String!
+    email: String
+    age: Int
+    address: Address
+    contact: [Contact]
+}
+
+type UsersResult {
+    success: Boolean!
+    errors: [String]
+    users: [User]
+}
+
+type UserMutationPayload {
+    error: String
+    user: User
+}
+
+input UserInput {
+    id : String
+    name: String!
+    email: String!
+    age: Int
+}
+
+type Mutation {
+    add_user(userDetails: UserInput!): User
+    update_user(userDetails: UserInput!): User
+    delete_user(id: String!): Boolean
+}
+
+type Query {
+    get_all_users: UsersResult
+    get_user_by_id(id: String!): User
+}
